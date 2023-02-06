@@ -59,6 +59,21 @@ class Core {
 	}
 
 	/**
+	 * Gets the summary of alerts raised by ZAP, optionally filtering by URL and paginating with 'start' position and 'count' of alerts
+	 */
+	public function alertsSummary($baseurl=NULL) {
+		$params = array();
+
+		if ($baseurl !== NULL) {
+			$params['baseurl'] = $baseurl;
+		}
+
+		$res = $this->zap->request($this->zap->base . 'core/view/alertsSummary/', $params);
+		
+		return reset($res);
+	}
+
+	/**
 	 * Gets the number of alerts, optionally filtering by URL
 	 */
 	public function numberOfAlerts($baseurl=NULL) {
