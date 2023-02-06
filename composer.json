@@ -1,9 +1,12 @@
 {
-    "name": "zaproxy/php-owasp-zap-v2",
-    "description": "PHP client API for OWASP ZAP",
-    "keywords": ["ZAP"],
+    "name": "gigadat/php-owasp-zap-v2",
+    "description": "Fork of yukisov/php-owasp-zap-v2 wrapper",
     "license": "Apache-2.0",
     "authors": [
+        {
+            "name": "pierre-joubert-73",
+            "email": "104787177+pierre-joubert-73@users.noreply.github.com"
+        },
         {
             "name": "ZAP development team",
             "email": "yukisov@gmail.com",
