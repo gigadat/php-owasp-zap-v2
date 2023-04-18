@@ -1,0 +1,36 @@
+version: 0.2
+phases:
+    install:
+        commands:
+            - echo Install starting
+            - echo logging into DockerHub ...
+            - echo "${DOCKERHUB_PASSWORD}" | docker login -u "${DOCKERHUB_USERNAME}" --password-stdin
+    pre_build:
+        commands:
+            - echo pre_build starting
+            - echo Logging in to Amazon ECR.... 
+            - aws --version
+            - aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 623058033049.dkr.ecr.us-east-2.amazonaws.com
+            - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+            - IMAGE_TAG=${COMMIT_HASH:=latest}
+            - REPOSITORY_URL_ZAP=623058033049.dkr.ecr.us-east-2.amazonaws.com/trulylegit-zap
+    build:
+        commands:
+            - echo Build started on `date`
+            - echo Building the Docker images...
+            - docker build -t ${REPOSITORY_URL_ZAP}:latest .
+            - docker tag ${REPOSITORY_URL_ZAP}:latest ${REPOSITORY_URL_ZAP}:$IMAGE_TAG
+
+    post_build: 
+        commands: 
+            - echo Build completed on `date` 
+            - echo pushing to repos...
+            - docker push ${REPOSITORY_URL_ZAP}:latest
+            - docker push ${REPOSITORY_URL_ZAP}:$IMAGE_TAG
+            - echo Writing image definitions file... 
+            - printf '[{"name":"zap","imageUri":"%s"}]' ${REPOSITORY_URL_ZAP}:$IMAGE_TAG > image-definitions.json
+            # - printf '{"ImageURI":"%s" }' ${REPOSITORY_URL}:$IMAGE_TAG > imageDetail.json
+
+artifacts:        
+    files:
+        - image-definitions.json
