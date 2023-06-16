@@ -286,6 +286,7 @@ class Spider {
 	}
 
 	public function setOptionMaxDepth($integer, $apikey='') {
+		// asdasd
 		$res = $this->zap->request($this->zap->base . 'spider/action/setOptionMaxDepth/', array('Integer' => $integer, 'apikey' => $apikey));
 		return reset($res);
 	}
