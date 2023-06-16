@@ -290,6 +290,11 @@ class Spider {
 		return reset($res);
 	}
 
+	public function setOptionMaxChildren($integer, $apikey='') {
+		$res = $this->zap->request($this->zap->base . 'spider/action/setOptionMaxChildren/', array('Integer' => $integer, 'apikey' => $apikey));
+		return reset($res);
+	}
+
 	public function setOptionMaxScansInUI($integer, $apikey='') {
 		$res = $this->zap->request($this->zap->base . 'spider/action/setOptionMaxScansInUI/', array('Integer' => $integer, 'apikey' => $apikey));
 		return reset($res);
