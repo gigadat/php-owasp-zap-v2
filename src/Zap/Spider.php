@@ -295,6 +295,11 @@ class Spider {
 		return reset($res);
 	}
 
+	public function setOptionMaxDuration($integer, $apikey='') {
+		$res = $this->zap->request($this->zap->base . 'spider/action/setOptionMaxDuration/', array('Integer' => $integer, 'apikey' => $apikey));
+		return reset($res);
+	}
+
 	public function setOptionMaxScansInUI($integer, $apikey='') {
 		$res = $this->zap->request($this->zap->base . 'spider/action/setOptionMaxScansInUI/', array('Integer' => $integer, 'apikey' => $apikey));
 		return reset($res);
