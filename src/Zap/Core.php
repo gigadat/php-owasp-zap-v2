@@ -54,7 +54,7 @@ class Core {
 		if ($count !== NULL) {
 			$params['count'] = $count;
 		}
-		$res = $this->zap->request($this->zap->base . 'core/view/alerts/', $params);
+		$res = $this->zap->request($this->zap->base . 'alert/view/alerts/', $params);
 		return reset($res);
 	}
 
@@ -68,7 +68,7 @@ class Core {
 			$params['baseurl'] = $baseurl;
 		}
 
-		$res = $this->zap->request($this->zap->base . 'core/view/alertsSummary/', $params);
+		$res = $this->zap->request($this->zap->base . 'alert/view/alertsSummary/', $params);
 		
 		return reset($res);
 	}
@@ -81,7 +81,7 @@ class Core {
 		if ($baseurl !== NULL) {
 			$params['baseurl'] = $baseurl;
 		}
-		$res = $this->zap->request($this->zap->base . 'core/view/numberOfAlerts/', $params);
+		$res = $this->zap->request($this->zap->base . 'alert/view/numberOfAlerts/', $params);
 		return reset($res);
 	}
 
