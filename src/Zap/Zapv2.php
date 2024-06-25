@@ -25,6 +25,7 @@ namespace Zap;
 
 use Zap\Acsrf;
 use Zap\AjaxSpider;
+use Zap\Alert;
 use Zap\Ascan;
 use Zap\Authentication;
 use Zap\Autoupdate;
@@ -74,6 +75,7 @@ class Zapv2 {
 
 		$this->acsrf = new Acsrf($this);
 		$this->ajaxSpider = new AjaxSpider($this);
+		$this->alert = new Alert($this);
 		$this->ascan = new Ascan($this);
 		$this->authentication = new Authentication($this);
 		$this->autoupdate = new Autoupdate($this);
