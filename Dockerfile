@@ -1,4 +1,4 @@
-FROM owasp/zap2docker-stable
+FROM zaproxy/zap-bare:2.15.0
 
 # WORKDIR /var/www
 
